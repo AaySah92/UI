@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
-    
         <title>Twitter trends test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="jquery.canvasjs.min.js"></script>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="func.js"></script>
 	</head>
-    
 <body>
-<h1>Here you go!</h1>
+	<div id="app">
+		<div id="leftPane" class="pane">
+			<div id="divCountry">
+				<h1>Select countries</h1>
+				<div>
+					<img src="globe.png" />
+					<div>
+						<h6>Select country</h6>
+						<select v-model="country1.name" @change="updateTrends(country1)">
+							<option disabled value="">Please select one</option>
+							<option v-for="item in countryList" :value="item">{{item}}</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<img src="globe.png" />
+					<div>
+						<h6>Select country</h6>
+						<select v-model="country2.name" @change="updateTrends(country2)">
+							<option disabled value="">Please select one</option>
+							<option v-for="item in countryList" :value="item">{{item}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div id="divTrends">
+				<h1>Common trends</h1>
+					<div>
+					<ul>
+						<li v-for="(value, key) in trends">{{key}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="rightPane" class="pane">
+			<div id="chartContainer" style="height: 100%; width: 95%;"></div>
+		</div>
+	</div>
 </body>
 </html>
